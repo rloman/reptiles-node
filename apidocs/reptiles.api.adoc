@@ -1,0 +1,396 @@
+:revnumber: {docVersion}
+:toclevels: 1
+:docinfo2:
+:sectnumlevels: 1
+:sectnums!:
+:baseUrl: http://localhost:3001/api/reptiles
+
+= Reptile API Documentation
+{docdate}
+
+== Introduction
+
+This is the documentation for the Reptile API.
+
+The Reptile API is a collection of CRUD API endpoints used to manipulate reptiles registered in the application.
+
+[source, json, options="nowrap",  subs="attributes"]
+.Endpoints
+----
+GET    {baseUrl}
+POST   {baseUrl}
+GET    {baseUrl}/{id}
+PUT    {baseUrl}/{id}
+DELETE {baseUrl}/{id}
+----
+
+For a detailed explanation of the endpoints see below
+
+:sectnums:
+
+== GET: Get reptiles
+
+.Purpose
+Obtains a list of reptiles
+
+=== Request
+[caption=""]
+.HTTP Request Header Parameters
+|===
+|Header|Value
+
+|Content-Type|application/json
+|===
+
+
+[caption=""]
+.Request properties
+|===
+|Property|Value
+
+|URL|{baseUrl}
+|Method|GET
+|===
+
+.Path parameters
+* not applicable
+
+.Request Body
+* not applicable
+
+.Sample request
+[source, json, options="nowrap", subs="attributes"]
+----
+GET {baseUrl}
+----
+
+=== Response
+
+Our controller's method returns a list of reptiles represented as JSON
+
+[caption=""]
+.HTTP Response Header Parameters
+|===
+|Header|Value
+
+|Content-Type|application/json
+|===
+
+[caption=""]
+.Response messages
+|===
+|HTTP Status Code |Reason
+
+|200|OK
+|===
+
+.Response body
+The response body contains a JSON representation of the list of reptiles or an empty list ([])
+
+.Sample response
+[source, json, options="nowrap"]
+----
+[{
+	name: "Seth Dare", 
+	voeding: "Samuel Schoen", 
+	huisvesting: "Hulda Breitenberg", 
+	verzorgingsInformatie: "Chang Kuhlman"
+}, 
+{
+	name: "Alexander Anderson", 
+	voeding: "Sammie Kulas", 
+	huisvesting: "Les Robel", 
+	verzorgingsInformatie: "Clair Luettgen"
+}, 
+{
+	name: "Genaro Cummings", 
+	voeding: "Aliza Raynor", 
+	huisvesting: "Sophie Durgan Jr.", 
+	verzorgingsInformatie: "Harris Bernier"
+}]
+----
+
+== POST: Create reptile
+
+.Purpose
+Create a reptile
+
+=== Request
+
+[caption=""]
+.HTTP Request Header Parameters
+|===
+|Header|Value
+
+|Content-Type|application/json
+|===
+
+
+[caption=""]
+.Request properties
+|===
+|Property|Value
+
+|URL|{baseUrl}
+|Method|POST
+|===
+
+.Path parameters
+* not applicable
+
+
+.Request Body
+The request body contains a JSON representation of the new to be created reptile **WITHOUT the id**, since the id is set by the application
+
+.Sample request
+[source, json, options="nowrap", subs="attributes"]
+----
+POST {baseUrl}
+----
+
+.Sample request body
+[source, json, options="nowrap"]
+----
+{
+	name: "Linwood Bednar", 
+	voeding: "Carl Cummings", 
+	huisvesting: "Abbie Littel", 
+	verzorgingsInformatie: "Olin Haag"
+}
+----
+
+=== Response
+
+The response body contains a JSON representation of the created reptile
+
+[caption=""]
+.HTTP Response Header Parameters
+|===
+|Header|Value
+
+|Content-Type|application/json
+|===
+
+[caption=""]
+.Response messages
+|===
+|HTTP Status Code |Reason
+
+|200|OK
+|===
+
+.Response body
+Our controller's method returns the created reptile respresented as JSON **WITH the id**, since the id is NOW set by the application
+
+.Sample response body
+[source, json, options="nowrap"]
+----
+{
+	id: 11102509954, 
+	name: "Ms. Lashawnda Swift", 
+	voeding: "Jayson Schowalter", 
+	huisvesting: "Trenton Trantow", 
+	verzorgingsInformatie: "Emmitt Collins"
+}
+----
+
+== GET: Get reptile
+
+.Purpose
+Obtains a specific reptile registered in the application by it's unique identifier
+
+=== Request
+
+[caption=""]
+.HTTP Request Header Parameters
+|===
+|Header|Value
+
+|Content-Type|application/json
+|===
+
+[caption=""]
+.Request properties
+|===
+|Property|Value
+
+|URL|{baseUrl}/{id}
+|Method|GET
+|===
+
+
+.Path parameters
+* id: an Integer as the identifier of the reptile to be obtained
+
+.Request Body
+* not applicable
+
+.Sample request
+[source, json, options="nowrap", subs="attributes"]
+----
+GET {baseUrl}/3
+----
+
+=== Response
+
+Our controller's method returns a reptile represented as JSON
+
+[caption=""]
+.HTTP Response Header Parameters
+|===
+|Header|Value
+
+|Content-Type|application/json
+|===
+
+[caption=""]
+.Response messages
+|===
+|HTTP Status Code |Reason
+
+|200|OK
+|404|Not found
+|===
+
+.Response body
+The response body contains a JSON representation of the requested Reptile by {id} or is empty when the Reptile is not found
+
+.Sample response body
+[source, json, options="nowrap"]
+----
+{
+	id: 6667363030, 
+	name: "Sherril Thompson", 
+	voeding: "Byron Strosin", 
+	huisvesting: "Grant Ondricka", 
+	verzorgingsInformatie: "Nathaniel Smitham"
+}
+----
+
+== PUT: Update reptile
+
+.Purpose
+Update a reptile
+
+=== Request
+
+[caption=""]
+.HTTP Request Header Parameters
+|===
+|Header|Value
+
+|Content-Type|application/json
+|===
+
+
+[caption=""]
+.Request properties
+|===
+|Property|Value
+
+|URL|{baseUrl}/{id}
+|Method|PUT
+|===
+
+.Path parameters
+* id: an Integer as the identifier of the reptile to be updated
+
+.Request Body
+The request body contains a JSON representation of the update of the properties of the reptile **WITHOUT the id**, since the id is sent as the Path Parameter
+
+.Sample request
+[source, json, options="nowrap", subs="attributes"]
+----
+PUT {baseUrl}/4
+----
+
+.Sample request body
+[source, json, options="nowrap"]
+----
+{
+	name: "Lindsy Wunsch DDS", 
+	voeding: "Stuart Koss", 
+	huisvesting: "Cornell Herzog", 
+	verzorgingsInformatie: "Stephan Olson"
+}
+----
+
+=== Response
+
+Our controller's method returns the updated reptile respresented as JSON **WITH the id**
+
+[caption=""]
+.HTTP Response Header Parameters
+|===
+|Header|Value
+
+|Content-Type|application/json
+|===
+
+[caption=""]
+.Response messages
+|===
+|HTTP Status Code |Reason
+
+|200|OK
+|404|Not found
+|===
+
+.Response body
+The response body contains a JSON representation of the updated reptile
+
+.Sample response body
+[source, json, options="nowrap"]
+----
+{
+	id: 10558807076, 
+	name: "Mrs. Lavern Turner", 
+	voeding: "Wade Vandervort", 
+	huisvesting: "Olin Barton I", 
+	verzorgingsInformatie: "Aldo Bechtelar"
+}
+----
+
+== DELETE: Delete reptile
+
+.Purpose
+Delete a specific reptile registered in the application by it's unique identifier
+
+=== Request
+
+[caption=""]
+.Request properties
+|===
+|Property|Value
+
+|URL|{baseUrl}/{id}
+|Method|DELETE
+|===
+
+.Path parameters
+* id: an Integer as the identifier of the reptile to be obtained
+
+.Request Body
+* not applicable
+
+.Sample request
+[source, json, options="nowrap",  subs="attributes"]
+----
+DELETE {baseUrl}/3
+----
+
+=== Response
+
+Our controller's method returns a statuscode based on the success of the deletion
+
+[caption=""]
+.Response messages
+|===
+|HTTP Status Code |Reason
+
+|204|No Content
+|404|Not found
+|===
+
+.Response body
+* not applicable

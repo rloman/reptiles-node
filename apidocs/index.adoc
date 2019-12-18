@@ -1,0 +1,9 @@
+:revnumber: {docVersion}
+:toclevels: 1
+:docinfo2:
+:sectnumlevels: 1
+:sectnums!:
+
+= Reptiles API documentation
+
+== <<reptiles.api.adoc#, Reptile API documentation>>
